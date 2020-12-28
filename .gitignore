@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# output
+.next/
+dist/
+generated/
+
+# logfiles
+*.log
+
+# test
+coverage/
+junit/
+
+# cache
+.eslintcache
+
+# environments
+.env*
+!.env.example
+
+# Storybook
+storybook-static/

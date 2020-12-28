@@ -1,0 +1,16 @@
+# test
+coverage/
+junit/
+
+# output
+.next/
+dist/
+generated/
+
+# hygen
+!.hygen/
+!.hygen.js
+
+# Storybook
+!.storybook/
+storybook-static/

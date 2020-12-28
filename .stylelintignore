@@ -1,0 +1,12 @@
+# test
+coverage/
+junit/
+
+# output
+.next/
+dist/
+generated/
+
+# Storybook
+!.storybook/
+storybook-static/

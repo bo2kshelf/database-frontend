@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "jpoissonnier.vscode-styled-components",
+    "GraphQL.vscode-graphql",
+    "ms-azuretools.vscode-docker",
+    "exiasr.hadolint"
+  ]
+}

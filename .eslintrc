@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/jest",
+    "plugin:@shopify/react",
+    "plugin:@shopify/prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": [2, "type"],
+    "import/order": [0],
+    "jest/valid-title": [0],
+    "jest/lowercase-name": [0],
+    "jsx-a11y/anchor-is-valid": [
+      2,
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.config.js"],
+      "extends": ["plugin:@shopify/node"]
+    },
+    {
+      "files": ["next-env.d.ts"],
+      "rules": {
+        "spaced-comment": [0],
+        "@typescript-eslint/triple-slash-reference": [0]
+      }
+    }
+  ]
+}
