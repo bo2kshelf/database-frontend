@@ -18,7 +18,7 @@ export const Component: React.FC<ComponentProps> = ({
   cover,
   authors,
 }) => (
-  <main className={clsx(className, 'container', 'mx-auto', 'py-8')}>
+  <main className={clsx(className)}>
     <BookHeader title={title} cover={cover} authors={authors} />
   </main>
 );

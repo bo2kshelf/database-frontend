@@ -7,7 +7,7 @@ export type ComponentProps = {
   name: string;
 };
 export const Component: React.FC<ComponentProps> = ({className, name}) => (
-  <main className={clsx(className, 'container', 'mx-auto', 'py-8')}>
+  <main className={clsx(className)}>
     <p>{name}</p>
   </main>
 );
