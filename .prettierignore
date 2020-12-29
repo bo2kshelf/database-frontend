@@ -14,3 +14,6 @@ _generated/
 # Storybook
 !.storybook/
 storybook-static/
+
+# root GraphQL schema
+schema.graphql

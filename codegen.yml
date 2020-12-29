@@ -9,7 +9,7 @@ generates:
       includeDirectives: true
   ./src/_generated/graphql-request/index.ts:
     documents:
-      - 'src/templates/**/*.{tsx,graphql}'
+      - 'src/templates/**/*.{tsx,gql}'
       - 'src/pages/**/*.tsx'
     plugins:
       - 'typescript'
