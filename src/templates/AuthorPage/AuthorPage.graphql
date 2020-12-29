@@ -1,0 +1,6 @@
+query AuthorPage($id: ID!) {
+  author(id: $id) {
+    id
+    name
+  }
+}
