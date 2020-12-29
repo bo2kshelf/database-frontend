@@ -1,0 +1,41 @@
+query SeriesPage($id: ID!) {
+  series(id: $id) {
+    id
+    title
+
+    books(first: 16, orderBy: {serial: ASC}) {
+      aggregate {
+        count
+      }
+      pageInfo {
+        hasNextPage
+      }
+      edges {
+        node {
+          book {
+            id
+            title
+            cover
+          }
+        }
+      }
+    }
+    relatedBooks(first: 8) {
+      aggregate {
+        count
+      }
+      pageInfo {
+        hasNextPage
+      }
+      edges {
+        node {
+          book {
+            id
+            title
+            cover
+          }
+        }
+      }
+    }
+  }
+}
