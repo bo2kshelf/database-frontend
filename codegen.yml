@@ -7,3 +7,11 @@ generates:
       - 'schema-ast'
     config:
       includeDirectives: true
+  ./src/_generated/graphql-request/index.ts:
+    documents:
+      - 'src/templates/**/*.{tsx,graphql}'
+      - 'src/pages/**/*.{tsx,graphql}'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-graphql-request'

@@ -1,0 +1,15 @@
+query BookPage($id: ID!) {
+  book(id: $id) {
+    id
+    title
+    isbn
+    cover
+    authors {
+      roles
+      author {
+        id
+        name
+      }
+    }
+  }
+}
