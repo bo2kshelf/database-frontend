@@ -10,7 +10,7 @@ generates:
   ./src/_generated/graphql-request/index.ts:
     documents:
       - 'src/templates/**/*.{tsx,graphql}'
-      - 'src/pages/**/*.{tsx,graphql}'
+      - 'src/pages/**/*.tsx'
     plugins:
       - 'typescript'
       - 'typescript-operations'

@@ -1,5 +1,0 @@
-query GetAllBookIds {
-  allBooks {
-    id
-  }
-}

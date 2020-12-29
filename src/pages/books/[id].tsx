@@ -1,3 +1,4 @@
+import {gql} from 'graphql-request';
 import {
   GetStaticPaths,
   GetStaticPathsResult,
@@ -7,6 +8,14 @@ import {
 import React from 'react';
 import {GraphQLRequestSdk} from '~/lib/graphql-request';
 import {BookPage, BookPageProps} from '~/templates/BookPage';
+
+export const Query = gql`
+  query GetAllBookIds {
+    allBooks {
+      id
+    }
+  }
+`;
 
 export type PageProps = BookPageProps;
 export const Page: NextPage<PageProps> = (props) => <BookPage {...props} />;
