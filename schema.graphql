@@ -2,6 +2,15 @@ schema {
   query: Query
   mutation: Mutation
 }
+input AddBookToSeriesBooksInput {
+  seriesId: ID!
+  bookId: ID!
+  serial: Float!
+}
+input AddBookToSeriesRelatedBooksInput {
+  seriesId: ID!
+  bookId: ID!
+}
 type Author {
   name: String!
   id: ID!
@@ -12,21 +21,22 @@ type Book {
   isbn: String
   id: ID!
   authors: [BookAuthorsConnection!]!
+  relatedSeries: [Series!]!
   cover: String
-}
-type BookAggregate {
-  count: Int!
 }
 type BookAuthorsConnection {
   id: ID!
   roles: [String!]
   author: Author!
 }
-type BookEdgeType {
+type BookEntityAggregate {
+  count: Int!
+}
+type BookEntityEdgeType {
   node: Book!
   cursor: String!
 }
-type BookPageInfo {
+type BookEntityPageInfo {
   hasNextPage: Boolean
   hasPreviousPage: Boolean
   startCursor: String
@@ -50,7 +60,7 @@ input CreateSeriesBooksInput {
 }
 input CreateSeriesInput {
   title: String!
-  books: [CreateSeriesBooksInput!]!
+  books: [CreateSeriesBooksInput!]
   relatedBooks: [CreateSeriesRelatedBooksInput!]
 }
 input CreateSeriesRelatedBooksInput {
@@ -61,9 +71,9 @@ enum OrderDirection {
   DESC
 }
 type PaginatedBookConnection {
-  aggregate: BookAggregate!
-  pageInfo: BookPageInfo!
-  edges: [BookEdgeType!]!
+  aggregate: BookEntityAggregate!
+  pageInfo: BookEntityPageInfo!
+  edges: [BookEntityEdgeType!]!
 }
 type PaginatedSeriesBooksConnection {
   aggregate: SeriesBooksConnectionAggregate!
@@ -79,7 +89,8 @@ type Series {
   title: String!
   id: ID!
   books(after: String, first: Int, before: String, last: Int, orderBy: SeriesBooksOrder): PaginatedSeriesBooksConnection!
-  relatedBooks(after: String, first: Int, before: String, last: Int, orderBy: SeriesBooksOrder): PaginatedSeriesRelatedBooksConnection!
+  relatedBooks(after: String, first: Int, before: String, last: Int): PaginatedSeriesRelatedBooksConnection!
+  relatedAuthors: [Author!]!
 }
 type SeriesBooksConnection {
   id: ID!
@@ -217,6 +228,6 @@ type Mutation {
   createAuthor(data: CreateAuthorInput!): Author!
   createBook(data: CreateBookInput!): Book!
   createSeries(data: CreateSeriesInput!): Series!
-  addBookToSeriesBooks(seriesId: ID!, bookId: ID!, serial: Float!): Series!
-  addBookToSeriesRelatedBooks(seriesId: ID!, bookId: ID!): Series!
+  addBookToSeriesBooks(data: AddBookToSeriesBooksInput!): Series!
+  addBookToSeriesRelatedBooks(data: AddBookToSeriesRelatedBooksInput!): Series!
 }
