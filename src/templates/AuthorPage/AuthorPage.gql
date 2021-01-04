@@ -2,5 +2,18 @@ query AuthorPage($id: ID!) {
   author(id: $id) {
     id
     name
+    books(first: 24) {
+      aggregate {
+        count
+      }
+      edges {
+        node {
+          id
+          title
+          isbn
+          cover
+        }
+      }
+    }
   }
 }
