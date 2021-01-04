@@ -11,5 +11,20 @@ query BookPage($id: ID!) {
         name
       }
     }
+    relatedSeries {
+      id
+      title
+      books {
+        edges {
+          node {
+            book {
+              id
+              title
+              cover
+            }
+          }
+        }
+      }
+    }
   }
 }
