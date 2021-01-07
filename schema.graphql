@@ -15,6 +15,11 @@ type Author {
   name: String!
   id: ID!
   books(after: String, first: Int, before: String, last: Int): PaginatedBookConnection!
+  relatedSeries(after: String, first: Int, before: String, last: Int, include: AuthorRelatedSeriesArgsInclude = {books: true, relatedBooks: false}): PaginatedSeriesConnection!
+}
+input AuthorRelatedSeriesArgsInclude {
+  books: Boolean
+  relatedBooks: Boolean
 }
 type Book {
   title: String!
@@ -80,6 +85,11 @@ type PaginatedSeriesBooksConnection {
   pageInfo: SeriesBooksConnectionPageInfo!
   edges: [SeriesBooksConnectionEdgeType!]!
 }
+type PaginatedSeriesConnection {
+  aggregate: SeriesEntityAggregate!
+  pageInfo: SeriesEntityPageInfo!
+  edges: [SeriesEntityEdgeType!]!
+}
 type PaginatedSeriesRelatedBooksConnection {
   aggregate: SeriesRelatedBooksConnectionAggregate!
   pageInfo: SeriesRelatedBooksConnectionPageInfo!
@@ -112,6 +122,19 @@ type SeriesBooksConnectionPageInfo {
 }
 input SeriesBooksOrder {
   serial: OrderDirection
+}
+type SeriesEntityAggregate {
+  count: Int!
+}
+type SeriesEntityEdgeType {
+  node: Series!
+  cursor: String!
+}
+type SeriesEntityPageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor: String
+  endCursor: String
 }
 type SeriesRelatedBooksConnection {
   id: ID!
