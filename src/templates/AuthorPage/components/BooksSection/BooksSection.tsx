@@ -10,23 +10,8 @@ export type ComponentProps = BooksSectionComponentProps;
 export const Component = BooksSectionComponent;
 
 export type ContainerProps = BooksSectionProps;
-export const Container: React.FC<ContainerProps> = ({
-  booksTotal: total,
-  ...props
-}) => {
+export const Container: React.FC<ContainerProps> = ({...props}) => {
   const {t} = useTranslation();
 
-  return (
-    <Component
-      {...props}
-      i18n={{
-        title: t('全ての本'),
-        aggregate: t('全{{all}}冊中{{actual}}冊を表示中', {
-          all: total,
-          actual: props.books.length,
-          context: total === props.books.length ? 'all' : 'part',
-        }),
-      }}
-    />
-  );
+  return <Component {...props} i18n={{title: t('全ての本')}} />;
 };

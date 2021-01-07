@@ -11,12 +11,14 @@ export type ComponentProps = {
   title: string;
   seriesLink: string;
   books: BooksSectionListProps['books'];
+  booksTotal: BooksSectionListProps['booksTotal'];
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
   title,
   books,
   seriesLink,
+  booksTotal,
 }) => (
   <div className={clsx(className)}>
     <h2 className={clsx('mb-4', 'text-xl', 'font-bold', 'select-all')}>
@@ -24,7 +26,11 @@ export const Component: React.FC<ComponentProps> = ({
         <a>{title}</a>
       </NextLink>
     </h2>
-    <BooksSectionList className={clsx('w-full')} books={books} />
+    <BooksSectionList
+      className={clsx('w-full')}
+      books={books}
+      booksTotal={booksTotal}
+    />
   </div>
 );
 
@@ -33,7 +39,8 @@ export type ContainerProps = {
   series: {
     id: string;
     title: string;
-    books: BooksSectionListProps['books'];
+    books: ComponentProps['books'];
+    booksTotal: ComponentProps['booksTotal'];
   };
 };
 export const Container: React.FC<ContainerProps> = ({series, ...props}) => {

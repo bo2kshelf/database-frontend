@@ -40,6 +40,7 @@ export const Container: React.FC<ContainerProps> = ({book, ...props}) => {
       }))}
       series={book.relatedSeries.map(({books, ...rest}) => ({
         ...rest,
+        booksTotal: books.aggregate.count,
         books: books.edges.map(({node: {book}}) => ({
           ...book,
           cover: book.cover || null,

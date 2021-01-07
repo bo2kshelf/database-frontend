@@ -51,6 +51,7 @@ export const Container: React.FC<ContainerProps> = ({
       booksTotal={author.books.aggregate.count}
       series={author.relatedSeries.edges.map(({node: {books, ...rest}}) => ({
         ...rest,
+        booksTotal: books.aggregate.count,
         books: books.edges.map(({node: {book}}) => ({
           ...book,
           cover: book.cover || null,

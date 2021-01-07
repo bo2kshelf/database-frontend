@@ -15,6 +15,9 @@ query BookPage($id: ID!) {
       id
       title
       books {
+        aggregate {
+          count
+        }
         edges {
           node {
             book {
