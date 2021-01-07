@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {BooksSectionList, BooksSectionListProps} from '../BooksSectionList';
 
 export type ComponentProps = {
@@ -30,11 +31,17 @@ export const Container: React.FC<ContainerProps> = ({
   booksTotal: total,
   ...props
 }) => {
+  const {t} = useTranslation();
+
   return (
     <Component
       {...props}
       i18n={{
-        aggregate: `全${total}冊中${props.books.length}冊を表示中`,
+        aggregate: t('全{{all}}冊中{{actual}}冊を表示中', {
+          all: total,
+          actual: props.books.length,
+          context: total === props.books.length ? 'all' : 'part',
+        }),
       }}
     />
   );

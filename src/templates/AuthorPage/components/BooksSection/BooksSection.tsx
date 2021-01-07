@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   BooksSectionProps,
   Component as BooksSectionComponent,
@@ -13,12 +14,18 @@ export const Container: React.FC<ContainerProps> = ({
   booksTotal: total,
   ...props
 }) => {
+  const {t} = useTranslation();
+
   return (
     <Component
       {...props}
       i18n={{
-        title: '全ての本',
-        aggregate: `全${total}冊中${props.books.length}冊を表示中`,
+        title: t('全ての本'),
+        aggregate: t('全{{all}}冊中{{actual}}冊を表示中', {
+          all: total,
+          actual: props.books.length,
+          context: total === props.books.length ? 'all' : 'part',
+        }),
       }}
     />
   );
