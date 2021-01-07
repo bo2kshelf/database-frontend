@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-prettier --check **/*.{json,yml,yaml,md} $@
+prettier --check **/*.{json,yml,yaml,md,gql} $@
 
 prettier --check --parser=json $@ \
   .eslintrc \

@@ -8,6 +8,8 @@
   ],
   "rules": {
     "@typescript-eslint/consistent-type-definitions": [2, "type"],
+    "@typescript-eslint/array-type": [2, {"default": "array"}],
+    "@shopify/strict-component-boundaries": [0],
     "import/order": [0],
     "jest/valid-title": [0],
     "jest/lowercase-name": [0],

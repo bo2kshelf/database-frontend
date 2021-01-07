@@ -5,7 +5,7 @@ junit/
 # output
 .next/
 dist/
-generated/
+_generated/
 
 # hygen
 !.hygen/
@@ -14,3 +14,6 @@ generated/
 # Storybook
 !.storybook/
 storybook-static/
+
+# root GraphQL schema
+schema.graphql

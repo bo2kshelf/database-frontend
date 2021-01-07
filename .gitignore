@@ -4,7 +4,7 @@ node_modules/
 # output
 .next/
 dist/
-generated/
+_generated/
 
 # logfiles
 *.log
