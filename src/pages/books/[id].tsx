@@ -1,13 +1,12 @@
 import {gql} from 'graphql-request';
 import {
-  GetStaticPaths,
-  GetStaticPathsResult,
-  GetStaticProps,
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
   NextPage,
 } from 'next';
 import React from 'react';
 import {GraphQLRequestSdk} from '~/lib/graphql-request';
-import {BookPage, BookPageProps} from '~/templates/BookPage';
+import {BookPage} from '~/templates/BookPage';
 
 export const Query = gql`
   query GetAllBookIds {
@@ -17,13 +16,10 @@ export const Query = gql`
   }
 `;
 
-export type PageProps = BookPageProps;
-export const Page: NextPage<PageProps> = (props) => <BookPage {...props} />;
-
 export type UrlQuery = {id: string};
-export const getStaticProps: GetStaticProps<PageProps, UrlQuery> = async ({
+export const getServerSideProps = async ({
   params,
-}) => {
+}: GetServerSidePropsContext<{id: string}>) => {
   return params
     ? GraphQLRequestSdk.BookPage({id: params.id}).then((data) => ({
         props: data,
@@ -31,18 +27,8 @@ export const getStaticProps: GetStaticProps<PageProps, UrlQuery> = async ({
     : Promise.reject(new Error('Invalid parameters.'));
 };
 
-export const getStaticPaths: GetStaticPaths<UrlQuery> = async () =>
-  GraphQLRequestSdk.GetAllBookIds()
-    .then(({allBooks}) =>
-      allBooks.map(({id}): GetStaticPathsResult<UrlQuery>['paths'][number] => ({
-        params: {id},
-      })),
-    )
-    .then(
-      (paths): GetStaticPathsResult<UrlQuery> => ({
-        paths,
-        fallback: true,
-      }),
-    );
+export const Page: NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = (props) => <BookPage {...props} />;
 
 export default Page;
