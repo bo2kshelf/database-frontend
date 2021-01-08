@@ -1,61 +1,33 @@
 import clsx from 'clsx';
-import NextLink from 'next/link';
 import React, {useEffect, useState} from 'react';
 import {useSearchBoxLazyQuery} from '~/_generated/apollo';
+import {InputBox, InputBoxProps} from './parts/InputBox';
+import {SuggestionsList, SuggestionsListProps} from './parts/SuggestionsList';
 
 export type ComponentProps = {
   className?: string;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-  loading: boolean;
-  empty: boolean;
-  data: (
-    | {
-        type: 'Series';
-        id: string;
-        title: string;
-        href: string;
-      }
-    | {
-        type: 'Book';
-        id: string;
-        title: string;
-        href: string;
-      }
-    | {
-        type: 'Author';
-        id: string;
-        name: string;
-        href: string;
-      }
-  )[];
-};
+  noInput: boolean;
+  query: string;
+} & SuggestionsListProps &
+  InputBoxProps;
 export const Component: React.FC<ComponentProps> = ({
   className,
   onChange,
-  empty,
+  noInput,
+  query,
   loading,
   data,
 }) => (
-  <div className={clsx(className)}>
-    <input
-      className={clsx('bg-gray-100', 'text-xl')}
-      type="text"
-      onChange={onChange}
-      aria-label="Searchbox"
-    />
-    {loading && <span>LOADING</span>}
-    {!empty &&
-      data.map((node) => (
-        <div key={node.id}>
-          <NextLink href={node.href}>
-            <a>
-              <span className={clsx('mr-2')}>{node.type}</span>
-              {node.type === 'Author' && <span>{node.name}</span>}
-              {node.type !== 'Author' && <span>{node.title}</span>}
-            </a>
-          </NextLink>
-        </div>
-      ))}
+  <div className={clsx(className, 'relative')}>
+    <InputBox className={clsx('w-full')} onChange={onChange} />
+    {!noInput && (
+      <SuggestionsList
+        className={clsx('absolute', 'top-full', 'w-full')}
+        query={query}
+        loading={loading}
+        data={data}
+      />
+    )}
   </div>
 );
 
@@ -65,10 +37,6 @@ export type ContainerProps = {
 export const Container: React.FC<ContainerProps> = ({...props}) => {
   const [query, setQuery] = useState('');
   const [search, {loading, data}] = useSearchBoxLazyQuery();
-
-  const onChange: ComponentProps['onChange'] = (event) => {
-    setQuery(event.target.value);
-  };
 
   useEffect(() => {
     if (query === '') {
@@ -80,18 +48,19 @@ export const Container: React.FC<ContainerProps> = ({...props}) => {
   return (
     <Component
       {...props}
-      onChange={onChange}
+      query={query}
+      onChange={setQuery}
       loading={loading}
-      empty={query === ''}
+      noInput={query === ''}
       data={
         data?.searchMixed.edges.map(({node}) => {
           switch (node.__typename) {
             case 'Author':
-              return {type: 'Author', href: `/authors/${node.id}`, ...node};
+              return {type: 'Author', ...node};
             case 'Book':
-              return {type: 'Book', href: `/books/${node.id}`, ...node};
+              return {type: 'Book', ...node};
             case 'Series':
-              return {type: 'Series', href: `/series/${node.id}`, ...node};
+              return {type: 'Series', ...node};
           }
         }) || []
       }

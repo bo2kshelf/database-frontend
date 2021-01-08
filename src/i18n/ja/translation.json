@@ -1,4 +1,8 @@
 {
+  "searchbox": {
+    "placeholder": "探したい本や著者を検索",
+    "no_result": "\"{{query}}\"の検索結果はありませんでした。"
+  },
   "全ての本": "全ての本",
   "全{{all}}冊中{{actual}}冊を表示中_all": "全{{actual}}冊を表示中",
   "全{{all}}冊中{{actual}}冊を表示中_part": "全{{all}}冊のうち{{actual}}冊を表示中"
