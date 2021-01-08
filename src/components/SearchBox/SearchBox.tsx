@@ -43,6 +43,7 @@ export const Component: React.FC<ComponentProps> = ({
         query={query}
         loading={loading}
         data={data}
+        onClick={deactivate}
       />
     )}
   </div>

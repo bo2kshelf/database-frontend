@@ -8,6 +8,7 @@ export type ComponentProps = {
   empty: boolean;
   data: SugesstionProps['data'][];
   query: string;
+  onClick(): void;
   i18n: {
     noResultFor: string;
   };
@@ -17,9 +18,10 @@ export const Component: React.FC<ComponentProps> = ({
   empty,
   data: list,
   query,
+  onClick,
   i18n,
 }) => (
-  <div className={clsx(className)}>
+  <div className={clsx(className)} onClick={onClick} onKeyPress={onClick}>
     <div
       className={clsx(
         'divide-y',
@@ -57,6 +59,7 @@ export type ContainerProps = {
   query: string;
   data: ComponentProps['data'];
   loading: boolean;
+  onClick: ComponentProps['onClick'];
 };
 export const Container: React.FC<ContainerProps> = ({
   query,
