@@ -7,6 +7,7 @@ import {useTranslation} from 'react-i18next';
 export type ComponentProps = {
   className?: string;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  onClick(): void;
   a11y: {
     label: string;
   };
@@ -17,6 +18,7 @@ export type ComponentProps = {
 export const Component: React.FC<ComponentProps> = ({
   className,
   onChange,
+  onClick,
   i18n,
   a11y,
 }) => (
@@ -30,6 +32,8 @@ export const Component: React.FC<ComponentProps> = ({
       'flex',
       'items-center',
     )}
+    onClick={onClick}
+    onKeyPress={onClick}
   >
     <FontAwesomeIcon
       icon={faSearch}
@@ -49,14 +53,20 @@ export const Component: React.FC<ComponentProps> = ({
 export type ContainerProps = {
   className?: string;
   onChange(query: string): void;
+  onClick: ComponentProps['onClick'];
 };
-export const Container: React.FC<ContainerProps> = ({onChange, ...props}) => {
+export const Container: React.FC<ContainerProps> = ({
+  onChange,
+  onClick,
+  ...props
+}) => {
   const {t} = useTranslation();
 
   return (
     <Component
       {...props}
       onChange={(event) => onChange(event.target.value)}
+      onClick={onClick}
       i18n={{placeholder: t('searchbox.placeholder')}}
       a11y={{label: 'Searchbox'}}
     />

@@ -6,23 +6,40 @@ import {SuggestionsList, SuggestionsListProps} from './parts/SuggestionsList';
 
 export type ComponentProps = {
   className?: string;
-  noInput: boolean;
   query: string;
-} & SuggestionsListProps &
-  InputBoxProps;
+  active: boolean;
+  activate(): void;
+  deactivate(): void;
+  onChange: InputBoxProps['onChange'];
+  loading: boolean;
+  data: SuggestionsListProps['data'];
+};
 export const Component: React.FC<ComponentProps> = ({
   className,
   onChange,
-  noInput,
   query,
   loading,
+  active,
+  activate,
+  deactivate,
   data,
 }) => (
   <div className={clsx(className, 'relative')}>
-    <InputBox className={clsx('w-full')} onChange={onChange} />
-    {!noInput && (
+    {active && (
+      <div
+        className={clsx('z-0', 'fixed', 'inset-0')}
+        onClick={deactivate}
+        onKeyPress={deactivate}
+      />
+    )}
+    <InputBox
+      className={clsx('relative', 'w-full', 'z-10')}
+      onChange={onChange}
+      onClick={activate}
+    />
+    {active && (
       <SuggestionsList
-        className={clsx('absolute', 'top-full', 'w-full')}
+        className={clsx('absolute', 'top-full', 'w-full', 'z-10')}
         query={query}
         loading={loading}
         data={data}
@@ -36,6 +53,7 @@ export type ContainerProps = {
 };
 export const Container: React.FC<ContainerProps> = ({...props}) => {
   const [query, setQuery] = useState('');
+  const [active, setActive] = useState(false);
   const [search, {loading, data}] = useSearchBoxLazyQuery();
 
   useEffect(() => {
@@ -45,13 +63,21 @@ export const Container: React.FC<ContainerProps> = ({...props}) => {
     search({variables: {query, max: 10}});
   }, [query, search]);
 
+  const activate = () => setActive(query.length !== 0);
+  const deactivate = () => setActive(false);
+
   return (
     <Component
       {...props}
       query={query}
-      onChange={setQuery}
       loading={loading}
-      noInput={query === ''}
+      active={active}
+      activate={activate}
+      deactivate={deactivate}
+      onChange={(query) => {
+        setQuery(query);
+        setActive(query !== '');
+      }}
       data={
         data?.searchMixed.edges.map(({node}) => {
           switch (node.__typename) {
