@@ -15,3 +15,10 @@ generates:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-graphql-request'
+  ./src/_generated/apollo/index.ts:
+    documents:
+      - 'src/components/**/*.gql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
