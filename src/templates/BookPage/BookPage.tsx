@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+import NextHead from 'next/head';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {
   BookHeader,
   BookHeaderProps,
@@ -16,12 +18,14 @@ export type ComponentProps = {
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
+  children,
   title,
   cover,
   authors,
   series,
 }) => (
   <main className={clsx(className)}>
+    {children}
     <BookHeader title={title} cover={cover} authors={authors} />
     <SeriesSection className={clsx('mt-8')} series={series} />
   </main>
@@ -29,6 +33,7 @@ export const Component: React.FC<ComponentProps> = ({
 
 export type ContainerProps = BookPageQuery;
 export const Container: React.FC<ContainerProps> = ({book, ...props}) => {
+  const {t} = useTranslation();
   return (
     <Component
       {...props}
@@ -46,6 +51,10 @@ export const Container: React.FC<ContainerProps> = ({book, ...props}) => {
           cover: book.cover || null,
         })),
       }))}
-    />
+    >
+      <NextHead>
+        <title>{t('head:book_page', {title: book.title})}</title>
+      </NextHead>
+    </Component>
   );
 };
