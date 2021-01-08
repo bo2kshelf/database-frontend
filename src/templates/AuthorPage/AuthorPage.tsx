@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+import NextHead from 'next/head';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {AuthorPageQuery} from '~/_generated/graphql-request';
 import {
   SeriesSection,
@@ -16,12 +18,14 @@ export type ComponentProps = {
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
+  children,
   name,
   books,
   booksTotal,
   series,
 }) => (
   <main className={clsx(className)}>
+    {children}
     <h1 className={clsx('mb-2', 'text-2xl', 'font-bold', 'select-all')}>
       {name}
     </h1>
@@ -35,11 +39,9 @@ export const Component: React.FC<ComponentProps> = ({
 );
 
 export type ContainerProps = AuthorPageQuery;
-export const Container: React.FC<ContainerProps> = ({
-  author,
+export const Container: React.FC<ContainerProps> = ({author, ...props}) => {
+  const {t} = useTranslation();
 
-  ...props
-}) => {
   return (
     <Component
       {...props}
@@ -57,6 +59,10 @@ export const Container: React.FC<ContainerProps> = ({
           cover: book.cover || null,
         })),
       }))}
-    />
+    >
+      <NextHead>
+        <title>{t('head:author_page', {name: author.name})}</title>
+      </NextHead>
+    </Component>
   );
 };

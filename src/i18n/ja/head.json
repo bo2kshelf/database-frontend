@@ -1,0 +1,6 @@
+{
+  "postfix": "bo2kshelf",
+  "author_page": "{{name}} - $t(head:postfix)",
+  "book_page": "{{title}} - $t(head:postfix)",
+  "series_page": "{{title}} - $t(head:postfix)"
+}
