@@ -7,14 +7,16 @@ export type ComponentProps = {
   className?: string;
   empty: boolean;
   data: SugesstionProps['data'][];
+  query: string;
   i18n: {
-    noResult: string;
+    noResultFor: string;
   };
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
   empty,
   data: list,
+  query,
   i18n,
 }) => (
   <div className={clsx(className)}>
@@ -27,8 +29,20 @@ export const Component: React.FC<ComponentProps> = ({
       )}
     >
       {empty && (
-        <div className={clsx('px-4', 'py-3')}>
-          <p>{i18n.noResult}</p>
+        <div
+          className={clsx(
+            'px-4',
+            'py-4',
+            'flex',
+            'flex-col',
+            'justify-center',
+            'items-center',
+          )}
+        >
+          <p className={clsx('mb-2')}>{i18n.noResultFor}</p>
+          <p className={clsx('w-full', 'text-center', 'font-bold', 'truncate')}>
+            {query}
+          </p>
         </div>
       )}
       {list.map((data) => (
@@ -55,8 +69,9 @@ export const Container: React.FC<ContainerProps> = ({
     <Component
       empty={!loading && props.data.length === 0}
       {...props}
+      query={query}
       i18n={{
-        noResult: t('searchbox.no_result', {query}),
+        noResultFor: t('searchbox.no_result_for', {query}),
       }}
     />
   );
