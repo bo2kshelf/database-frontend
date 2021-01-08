@@ -1,0 +1,27 @@
+query SearchBox($query: String!, $max: Int!) {
+  searchMixed(query: $query, first: $max) {
+    aggregate {
+      count
+    }
+    pageInfo {
+      startCursor
+    }
+    edges {
+      node {
+        __typename
+        ... on Book {
+          id
+          title
+        }
+        ... on Series {
+          id
+          title
+        }
+        ... on Author {
+          id
+          name
+        }
+      }
+    }
+  }
+}
