@@ -7,11 +7,10 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import NextLink from 'next/link';
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 
 export const Icon: React.FC<{
   className?: string;
-  type: ContainerProps['data']['type'];
+  type: 'Author' | 'Book' | 'Series';
 }> = ({className, type}) => {
   const icon = (() => {
     switch (type) {
@@ -30,16 +29,16 @@ export const Icon: React.FC<{
   );
 };
 
-export type ComponentProps = {
+export type BaseComponentProps = {
   className?: string;
-  type: ContainerProps['data']['type'];
+  type: 'Author' | 'Book' | 'Series';
   text: string;
   href: string;
   i18n: {
     type: string;
   };
 };
-export const Component: React.FC<ComponentProps> = ({
+export const BaseComponent: React.FC<BaseComponentProps> = ({
   className,
   type,
   text,
@@ -65,60 +64,3 @@ export const Component: React.FC<ComponentProps> = ({
     </NextLink>
   </div>
 );
-
-export type ContainerProps = {
-  className?: ComponentProps['className'];
-  data: {
-    id: string;
-  } & (
-    | {
-        type: 'Series' | 'Book';
-        title: string;
-      }
-    | {
-        type: 'Author';
-        name: string;
-      }
-  );
-};
-export const Container: React.FC<ContainerProps> = ({data, ...props}) => {
-  const {t} = useTranslation();
-
-  const {href, text, i18n} = (() => {
-    switch (data.type) {
-      case 'Author':
-        return {
-          href: `/authors/${data.id}`,
-          text: data.name,
-          i18n: {
-            type: t('common:author'),
-          },
-        };
-      case 'Book':
-        return {
-          href: `/books/${data.id}`,
-          text: data.title,
-          i18n: {
-            type: t('common:book'),
-          },
-        };
-      case 'Series':
-        return {
-          href: `/series/${data.id}`,
-          text: data.title,
-          i18n: {
-            type: t('common:series'),
-          },
-        };
-    }
-  })();
-  return (
-    <Component
-      {...props}
-      type={data.type}
-      text={text}
-      href={href}
-      i18n={i18n}
-    />
-  );
-};
