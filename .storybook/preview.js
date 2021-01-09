@@ -2,11 +2,13 @@ import React from 'react';
 
 import 'tailwindcss/tailwind.css';
 import {I18nextProvider, initReactI18next} from 'react-i18next';
-
-import {RouterContext} from 'next/dist/next-server/lib/router-context';
+import {withNextRouter} from 'storybook-addon-next-router';
 
 import i18n from 'i18next';
+import {addDecorator} from '@storybook/react';
 import {resources} from '../src/i18n';
+
+addDecorator(withNextRouter());
 
 export const globalTypes = {
   locale: {
@@ -30,17 +32,9 @@ export const decorators = [
   (Story, {globals}) => {
     i18n.language = globals.locale;
     return (
-      <RouterContext.Provider
-        value={{
-          push: () => Promise.resolve(),
-          replace: () => Promise.resolve(),
-          prefetch: () => Promise.resolve(),
-        }}
-      >
-        <I18nextProvider i18n={i18n}>
-          <Story />
-        </I18nextProvider>
-      </RouterContext.Provider>
+      <I18nextProvider i18n={i18n}>
+        <Story />
+      </I18nextProvider>
     );
   },
 ];
