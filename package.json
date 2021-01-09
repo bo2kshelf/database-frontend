@@ -10,6 +10,7 @@
     "start": "next start -p $PORT",
     "clean": "run-p -n clean:*",
     "clean:dist": "rimraf dist",
+    "clean:storybook": "rimraf storybook-static",
     "lint": "scripty",
     "lint:eslint": "scripty",
     "lint:hadolint": "scripty",
@@ -20,6 +21,8 @@
     "fmt:eslint": "yarn lint:eslint --fix",
     "fmt:prettier": "yarn lint:prettier --write",
     "codegen": "gql-gen",
+    "storybook:build": "build-storybook",
+    "storybook:dev": "start-storybook -p 6006",
     "ts-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -50,6 +53,7 @@
   },
   "devDependencies": {
     "@arkweid/lefthook": "0.7.2",
+    "@babel/core": "^7.12.3",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@graphql-codegen/cli": "1.20.0",
@@ -63,17 +67,23 @@
     "@shopify/eslint-plugin": "39.0.3",
     "@shopify/prettier-config": "1.1.2",
     "@shopify/stylelint-plugin": "10.0.1",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/react": "^6.1.11",
     "@types/jest": "26.0.19",
     "@types/node": "14.14.16",
     "@types/react": "17.0.0",
     "@types/styled-components": "5.1.7",
     "autoprefixer": "10.1.0",
+    "babel-loader": "^8.2.2",
     "eslint": "7.16.0",
     "hygen": "6.0.4",
     "jest": "26.6.3",
     "jest-junit": "12.0.0",
     "npm-run-all": "4.1.5",
     "postcss": "8.2.1",
+    "postcss-loader": "^4.1.0",
     "prettier": "2.2.1",
     "prettier-plugin-optipack": "1.1.2",
     "prettier-plugin-organize-imports": "1.1.1",
@@ -81,6 +91,7 @@
     "scripty": "2.0.0",
     "stylelint": "13.8.0",
     "stylelint-config-styled-components": "0.1.1",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "4.1.3"
   }
 }
