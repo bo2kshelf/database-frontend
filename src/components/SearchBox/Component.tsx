@@ -23,7 +23,7 @@ export const Component: React.FC<ComponentProps> = ({
   deactivate,
   data,
 }) => (
-  <div className={clsx(className, 'relative')}>
+  <div className={clsx(className, 'relative', 'bg-white')}>
     {active && (
       <div
         className={clsx('z-0', 'fixed', 'inset-0')}

@@ -20,6 +20,7 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
       'flex-col',
       'justify-center',
       'items-center',
+      'bg-white',
     )}
   >
     <p className={clsx('mb-2')}>{i18n.noResultFor}</p>
