@@ -18,14 +18,12 @@ export default {
   },
 } as Meta;
 
-export const Primary: Story<ComponentProps> = ({
+export const Primary: Story<ComponentProps & {type: keyof typeof icons}> = ({
   type,
   ...args
-}: {
-  type: keyof typeof icons;
 }) => <Component {...args} className={clsx('text-md')} icon={icons[type]} />;
 Primary.args = {
-  type: Object.keys(icons)[0],
+  type: Object.keys(icons)[0] as keyof typeof icons,
 };
 Primary.argTypes = {
   type: {
