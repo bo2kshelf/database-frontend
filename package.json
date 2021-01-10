@@ -21,7 +21,7 @@
     "fmt:eslint": "yarn lint:eslint --fix",
     "fmt:prettier": "yarn lint:prettier --write",
     "codegen": "gql-gen",
-    "storybook:build": "build-storybook",
+    "storybook:build": "scripty",
     "storybook:dev": "start-storybook -p 6006",
     "ts-check": "tsc --noEmit"
   },
