@@ -23,7 +23,7 @@ export const Component: React.FC<ComponentProps> = ({
   deactivate,
   data,
 }) => (
-  <div className={clsx(className, 'relative', 'bg-white')}>
+  <div className={clsx(className, 'relative')}>
     {active && (
       <div
         className={clsx('z-0', 'fixed', 'inset-0')}
@@ -38,7 +38,7 @@ export const Component: React.FC<ComponentProps> = ({
     />
     {active && (
       <SuggestionsList
-        className={clsx('absolute', 'top-full', 'w-full', 'z-10')}
+        className={clsx('absolute', 'top-full', 'mt-0.5', 'w-full', 'z-10')}
         query={query}
         loading={loading}
         data={data}
