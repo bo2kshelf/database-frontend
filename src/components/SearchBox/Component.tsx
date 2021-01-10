@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import {InputBox, InputBoxProps} from './parts/InputBox';
-import {SuggestionsList, SuggestionsListProps} from './parts/SuggestionsList';
+import {InputBox, InputBoxProps} from './InputBox';
+import {SuggestionsList, SuggestionsListProps} from './SuggestionsList';
 
 export type ComponentProps = {
   className?: string;
