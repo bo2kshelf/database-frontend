@@ -12,10 +12,3 @@ export const Component: React.FC<ComponentProps> = ({className}) => (
     </div>
   </nav>
 );
-
-export type ContainerProps = {
-  className?: ComponentProps['className'];
-};
-export const Container: React.FC<ContainerProps> = ({...props}) => {
-  return <Component {...props} />;
-};
