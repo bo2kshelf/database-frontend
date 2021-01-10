@@ -6,6 +6,7 @@
 ## Housekeeping
 
 [![CircleCI](https://circleci.com/gh/bo2kshelf/database-frontend.svg?style=svg)](https://app.circleci.com/pipelines/github/bo2kshelf/database-frontend)
+[![Codecov](https://codecov.io/gh/bo2kshelf/database-frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/bo2kshelf/database-frontend)
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://bo2kshelf-database-frontend-storybook.netlify.app/)
 
 ### Storybook
