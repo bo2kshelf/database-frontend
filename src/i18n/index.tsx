@@ -4,7 +4,7 @@ import React from 'react';
 import {I18nextProvider, initReactI18next} from 'react-i18next';
 import ja from './ja';
 
-const resources = {ja};
+export const resources = {ja};
 
 i18n.use(i18nextBrowserLanguageDetector).use(initReactI18next).init({
   resources,

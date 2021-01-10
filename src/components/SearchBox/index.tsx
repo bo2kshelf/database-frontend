@@ -1,5 +1,4 @@
-export {Component, Container as SearchBox} from './SearchBox';
-export type {
-  ComponentProps,
-  ContainerProps as SearchBoxProps,
-} from './SearchBox';
+export {Component} from './Component';
+export type {ComponentProps} from './Component';
+export {Container as SearchBox} from './Container';
+export type {ContainerProps as SearchBoxProps} from './Container';
