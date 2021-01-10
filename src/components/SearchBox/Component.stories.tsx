@@ -29,8 +29,24 @@ Primary.args = {
     {id: '7', type: 'Series', title: 'Sereis 2'},
   ],
 };
+Primary.storyName = '検索結果がある場合';
 Primary.argTypes = {
   query: {table: {disable: true}},
+  loading: {table: {disable: true}},
+  active: {table: {disable: true}},
+};
+
+export const NoResult: Story<ComponentProps> = (args) => (
+  <Component {...args} className={clsx('w-72')} />
+);
+NoResult.storyName = '検索結果が何もない場合';
+NoResult.args = {
+  query: '油絵ネス湖の怪物はあなたを信じる',
+  loading: false,
+  active: true,
+  data: [],
+};
+NoResult.argTypes = {
   loading: {table: {disable: true}},
   active: {table: {disable: true}},
 };
