@@ -4,7 +4,7 @@ import React from 'react';
 import {Component, ComponentProps} from '.';
 
 export default {
-  title: 'SearchBox/Suggestion',
+  title: 'SearchBox/Suggestion/Component',
   component: Component,
   argTypes: {
     className: {table: {disable: true}},

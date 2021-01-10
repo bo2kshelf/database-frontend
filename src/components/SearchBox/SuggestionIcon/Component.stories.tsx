@@ -10,7 +10,7 @@ import {Component, ComponentProps} from '.';
 import {icons} from './Container';
 
 export default {
-  title: 'SearchBox/SuggestionIcon',
+  title: 'SearchBox/SuggestionIcon/Component',
   component: Component,
   argTypes: {
     className: {table: {disable: true}},

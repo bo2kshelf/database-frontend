@@ -4,11 +4,10 @@ import React from 'react';
 import {Component, ComponentProps} from '.';
 
 export default {
-  title: 'SearchBox/SuggestionsList',
+  title: 'SearchBox/Component',
   component: Component,
   argTypes: {
     className: {table: {disable: true}},
-    empty: {table: {disable: true}},
     data: {table: {disable: true}},
   },
 } as Meta;
@@ -17,8 +16,9 @@ export const Primary: Story<ComponentProps> = (args) => (
   <Component {...args} className={clsx('w-72')} />
 );
 Primary.args = {
-  query: 'Query',
-  empty: false,
+  query: '油絵ネス湖の怪物はあなたを信じる',
+  loading: false,
+  active: true,
   data: [
     {id: '1', type: 'Book', title: 'Book 1'},
     {id: '2', type: 'Book', title: 'Book 2'},
@@ -31,13 +31,6 @@ Primary.args = {
 };
 Primary.argTypes = {
   query: {table: {disable: true}},
-};
-
-export const NoResult: Story<ComponentProps> = (args) => (
-  <Component {...args} className={clsx('w-72')} />
-);
-NoResult.args = {
-  query: '油絵ネス湖の怪物はあなたを信じる',
-  empty: true,
-  data: [],
+  loading: {table: {disable: true}},
+  active: {table: {disable: true}},
 };
