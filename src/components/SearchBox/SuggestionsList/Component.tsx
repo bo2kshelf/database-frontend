@@ -27,6 +27,7 @@ export const Component: React.FC<ComponentProps> = ({
         'divide-gray-200',
         'border',
         'border-gray-100',
+        'shadow-md',
       )}
     >
       {empty && <SuggestionNoResult className={clsx()} query={query} />}

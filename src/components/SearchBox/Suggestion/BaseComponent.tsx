@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import NextLink from 'next/link';
 import React from 'react';
+import styled from 'styled-components';
 import {SugesstionIcon, SugesstionIconProps} from '../SuggestionIcon';
 
 export type BaseComponentProps = {
@@ -10,14 +11,22 @@ export type BaseComponentProps = {
   href: string;
   i18n: {type: string};
 };
-export const BaseComponent: React.FC<BaseComponentProps> = ({
+export const PlainBaseComponent: React.FC<BaseComponentProps> = ({
   className,
   type,
   text,
   href,
   i18n,
 }) => (
-  <div className={clsx(className, 'bg-white', 'hover:bg-gray-100')}>
+  <div
+    className={clsx(
+      className,
+      'bg-white',
+      'hover:bg-blue-300',
+      'bg-opacity-90',
+      'hover:bg-opacity-90',
+    )}
+  >
     <NextLink href={href}>
       <a className={clsx('px-4', 'py-3', 'flex', 'items-center')}>
         <SugesstionIcon className={clsx('mr-2')} type={type} />
@@ -33,3 +42,6 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
     </NextLink>
   </div>
 );
+export const BaseComponent = styled(PlainBaseComponent)`
+  backdrop-filter: blur(3px);
+`;

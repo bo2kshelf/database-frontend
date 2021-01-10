@@ -1,12 +1,13 @@
 import clsx from 'clsx';
 import React from 'react';
+import styled from 'styled-components';
 
 export type BaseComponentProps = {
   className?: string;
   query: string;
   i18n: {noResultFor: string};
 };
-export const BaseComponent: React.FC<BaseComponentProps> = ({
+export const PlainBaseComponent: React.FC<BaseComponentProps> = ({
   className,
   i18n,
   query,
@@ -21,6 +22,7 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
       'justify-center',
       'items-center',
       'bg-white',
+      'bg-opacity-90',
     )}
   >
     <p className={clsx('mb-2')}>{i18n.noResultFor}</p>
@@ -29,3 +31,6 @@ export const BaseComponent: React.FC<BaseComponentProps> = ({
     </p>
   </div>
 );
+export const BaseComponent = styled(PlainBaseComponent)`
+  backdrop-filter: blur(3px);
+`;
