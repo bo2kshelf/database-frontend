@@ -1,17 +1,17 @@
 import clsx from 'clsx';
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 import {Sugesstion, SugesstionProps} from '../Suggestion';
+import {
+  SuggestionNoResult,
+  SuggestionNoResultProps,
+} from '../SuggestionNoResult';
 
 export type ComponentProps = {
   className?: string;
   empty: boolean;
   data: SugesstionProps['data'][];
-  query: string;
+  query: SuggestionNoResultProps['query'];
   onClick(): void;
-  i18n: {
-    noResultFor: string;
-  };
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
@@ -19,7 +19,6 @@ export const Component: React.FC<ComponentProps> = ({
   data: list,
   query,
   onClick,
-  i18n,
 }) => (
   <div className={clsx(className)} onClick={onClick} onKeyPress={onClick}>
     <div
@@ -30,23 +29,7 @@ export const Component: React.FC<ComponentProps> = ({
         'border-gray-100',
       )}
     >
-      {empty && (
-        <div
-          className={clsx(
-            'px-4',
-            'py-4',
-            'flex',
-            'flex-col',
-            'justify-center',
-            'items-center',
-          )}
-        >
-          <p className={clsx('mb-2')}>{i18n.noResultFor}</p>
-          <p className={clsx('w-full', 'text-center', 'font-bold', 'truncate')}>
-            {query}
-          </p>
-        </div>
-      )}
+      {empty && <SuggestionNoResult className={clsx()} query={query} />}
       {list.map((data) => (
         <Sugesstion className={clsx('w-full')} key={data.id} data={data} />
       ))}
@@ -66,16 +49,11 @@ export const Container: React.FC<ContainerProps> = ({
   loading,
   ...props
 }) => {
-  const {t} = useTranslation();
-
   return (
     <Component
       empty={!loading && props.data.length === 0}
       {...props}
       query={query}
-      i18n={{
-        noResultFor: t('searchbox.no_result_for', {query}),
-      }}
     />
   );
 };
