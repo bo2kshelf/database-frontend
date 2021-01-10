@@ -69,3 +69,33 @@ Sc.decorators = [
     );
   },
 ];
+
+export const DelayedSearch: Story<ContainerProps> = (args) => (
+  <Container {...args} className={clsx('w-72')} />
+);
+DelayedSearch.storyName = '検索にワンテンポ遅延を挟む';
+DelayedSearch.decorators = [
+  (Story) => {
+    const mockClient = createMockClient();
+    mockClient.setRequestHandler(SearchBoxDocument, ({query}) =>
+      new Promise((resolve) => setTimeout(resolve, 100)).then(() => ({
+        data: {
+          searchMixed: {
+            aggregate: {count: 10},
+            pageInfo: {startCursor: 'startCursor'},
+            edges: [
+              {node: {__typename: 'Book', id: '1', title: `${query} 1`}},
+              {node: {__typename: 'Series', id: '2', title: `${query} 1`}},
+              {node: {__typename: 'Author', id: '3', name: `${query} 1`}},
+            ],
+          },
+        },
+      })),
+    );
+    return (
+      <ApolloProvider client={mockClient}>
+        <Story />
+      </ApolloProvider>
+    );
+  },
+];
