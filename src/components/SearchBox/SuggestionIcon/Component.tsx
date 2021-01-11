@@ -10,6 +10,6 @@ export type ComponentProps = {
 
 export const Component: React.FC<ComponentProps> = ({className, icon}) => (
   <div className={clsx(className, 'select-none')}>
-    <FontAwesomeIcon icon={icon} fixedWidth />
+    <FontAwesomeIcon className={clsx('text-gray-500')} icon={icon} fixedWidth />
   </div>
 );

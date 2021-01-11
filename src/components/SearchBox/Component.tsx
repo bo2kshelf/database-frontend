@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
-import {InputBox, InputBoxProps} from './parts/InputBox';
-import {SuggestionsList, SuggestionsListProps} from './parts/SuggestionsList';
+import {InputBox, InputBoxProps} from './InputBox';
+import {SuggestionsList, SuggestionsListProps} from './SuggestionsList';
 
 export type ComponentProps = {
   className?: string;
@@ -38,7 +38,7 @@ export const Component: React.FC<ComponentProps> = ({
     />
     {active && (
       <SuggestionsList
-        className={clsx('absolute', 'top-full', 'w-full', 'z-10')}
+        className={clsx('absolute', 'top-full', 'mt-0.5', 'w-full', 'z-10')}
         query={query}
         loading={loading}
         data={data}

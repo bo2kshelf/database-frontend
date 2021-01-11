@@ -1,5 +1,4 @@
-export {Component, Container as HeaderNav} from './HeaderNav';
-export type {
-  ComponentProps,
-  ContainerProps as HeaderNavProps,
-} from './HeaderNav';
+export {Component} from './Component';
+export type {ComponentProps} from './Component';
+export {Container as HeaderNav} from './Container';
+export type {ContainerProps as HeaderNavProps} from './Container';

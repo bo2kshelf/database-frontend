@@ -21,14 +21,7 @@ export const Component: React.FC<ComponentProps> = ({
   onClick,
 }) => (
   <div className={clsx(className)} onClick={onClick} onKeyPress={onClick}>
-    <div
-      className={clsx(
-        'divide-y',
-        'divide-gray-200',
-        'border',
-        'border-gray-100',
-      )}
-    >
+    <div className={clsx('divide-y', 'divide-gray-200', 'shadow-md')}>
       {empty && <SuggestionNoResult className={clsx()} query={query} />}
       {list.map((data) => (
         <Sugesstion className={clsx('w-full')} key={data.id} data={data} />
