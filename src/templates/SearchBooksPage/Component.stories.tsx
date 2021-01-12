@@ -7,6 +7,9 @@ import {Component, ComponentProps} from './Component';
 export default {
   title: 'Page/SearchBooks/Component',
   component: Component,
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     className: {table: {disable: true}},
     books: {table: {disable: true}},
