@@ -153,7 +153,7 @@ type SeriesRelatedBooksConnectionPageInfo {
   startCursor: String
   endCursor: String
 }
-input SearchAuthorsQueryInput {
+input SearchAuthorsQuery {
   name: String
 }
 type SearchAuthorsResult {
@@ -173,8 +173,12 @@ type SearchAuthorsResultPageInfo {
   hasPreviousPage: Boolean
   startCursor: String
   endCursor: String
+  query: SearchAuthorsResultPageInfoQuery!
 }
-input SearchBooksQueryInput {
+type SearchAuthorsResultPageInfoQuery {
+  name: String
+}
+input SearchBooksQuery {
   title: String
 }
 type SearchBooksResult {
@@ -194,6 +198,13 @@ type SearchBooksResultPageInfo {
   hasPreviousPage: Boolean
   startCursor: String
   endCursor: String
+  query: SearchBooksResultPageInfoQuery!
+}
+type SearchBooksResultPageInfoQuery {
+  title: String
+}
+input SearchMixedQuery {
+  query: String
 }
 type SearchMixedResult {
   aggregate: SearchMixedResultAggregate!
@@ -212,9 +223,13 @@ type SearchMixedResultPageInfo {
   hasPreviousPage: Boolean
   startCursor: String
   endCursor: String
+  query: SearchMixedResultPageInfoQuery!
+}
+type SearchMixedResultPageInfoQuery {
+  query: String
 }
 union SearchMixedUnion = Book | Author | Series
-input SearchSeriesQueryInput {
+input SearchSeriesQuery {
   title: String
 }
 type SearchSeriesResult {
@@ -234,6 +249,10 @@ type SearchSeriesResultPageInfo {
   hasPreviousPage: Boolean
   startCursor: String
   endCursor: String
+  query: SearchSeriesResultPageInfoQuery!
+}
+type SearchSeriesResultPageInfoQuery {
+  title: String
 }
 type Query {
   author(id: ID!): Author!
@@ -242,10 +261,10 @@ type Query {
   allBooks: [Book!]!
   series(id: ID!): Series!
   allSeries: [Series!]!
-  searchAuthors(after: String, first: Int, before: String, last: Int, query: SearchAuthorsQueryInput!): SearchAuthorsResult!
-  searchBooks(after: String, first: Int, before: String, last: Int, query: SearchBooksQueryInput!): SearchBooksResult!
-  searchMixed(after: String, first: Int, before: String, last: Int, query: String!): SearchMixedResult!
-  searchSeries(after: String, first: Int, before: String, last: Int, query: SearchSeriesQueryInput!): SearchSeriesResult!
+  searchBooks(after: String, first: Int, before: String, last: Int, query: SearchBooksQuery!): SearchBooksResult!
+  searchAuthors(after: String, first: Int, before: String, last: Int, query: SearchAuthorsQuery!): SearchAuthorsResult!
+  searchSeries(after: String, first: Int, before: String, last: Int, query: SearchSeriesQuery!): SearchSeriesResult!
+  searchMixed(after: String, first: Int, before: String, last: Int, query: SearchMixedQuery!): SearchMixedResult!
 }
 type Mutation {
   createAuthor(data: CreateAuthorInput!): Author!

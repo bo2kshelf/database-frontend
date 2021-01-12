@@ -1,10 +1,15 @@
 query SearchBox($query: String!, $max: Int!) {
-  searchMixed(query: $query, first: $max) {
+  searchMixed(
+    query: {query: $query}
+    after: "YXJyYXljb25uZWN0aW9uOjQ"
+    first: $max
+  ) {
     aggregate {
       count
     }
     pageInfo {
       startCursor
+      endCursor
     }
     edges {
       node {
