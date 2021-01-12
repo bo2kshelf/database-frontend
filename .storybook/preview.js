@@ -6,7 +6,7 @@ import i18n from 'i18next';
 import {addDecorator} from '@storybook/react';
 import {resources} from '../src/i18n';
 import './replaceNextImage';
-import {tailwindViewports} from './tailwind/viewports';
+import {viewports as tailwindViewports} from './tailwind/viewports';
 
 addDecorator(withNextRouter());
 
@@ -43,6 +43,7 @@ export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
   storySort: {
     method: 'alphabetical',
+    order: ['Component', 'Container'],
   },
   viewport: {
     viewports: {
