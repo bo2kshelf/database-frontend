@@ -14,10 +14,14 @@ export const Component: React.FC<ComponentProps> = ({
   name,
   link,
 }) => (
-  <div className={clsx(className)}>
-    {roles && <span className={clsx('mr-1')}>{roles}</span>}
+  <div className={clsx(className, 'flex')}>
+    {roles && (
+      <span className={clsx('mr-1', 'whitespace-nowrap')}>{roles}</span>
+    )}
     <NextLink href={link}>
-      <a className={clsx('font-bold', 'select-all')}>{name}</a>
+      <a className={clsx('font-bold', 'select-all', 'whitespace-nowrap')}>
+        {name}
+      </a>
     </NextLink>
   </div>
 );
@@ -27,7 +31,7 @@ export type ContainerProps = {
   author: {
     id: string;
     name: string;
-    roles?: string[];
+    roles: string[] | null;
   };
 };
 export const Container: React.FC<ContainerProps> = ({author, ...props}) => {
