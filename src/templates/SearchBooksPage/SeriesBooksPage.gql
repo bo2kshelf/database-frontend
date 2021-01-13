@@ -1,0 +1,34 @@
+query SearchBooksPage($title: String!, $after: String) {
+  searchBooks(first: 12, after: $after, query: {title: $title}) {
+    aggregate {
+      count
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      query {
+        title
+      }
+    }
+    edges {
+      node {
+        id
+        title
+        cover
+        authors {
+          roles
+          author {
+            id
+            name
+          }
+        }
+        relatedSeries {
+          id
+          title
+        }
+      }
+    }
+  }
+}

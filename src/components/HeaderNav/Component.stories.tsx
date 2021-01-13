@@ -9,6 +9,9 @@ import {Component, ComponentProps} from '.';
 export default {
   title: 'HeaderNav/Component',
   component: Component,
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     className: {table: {disable: true}},
   },
