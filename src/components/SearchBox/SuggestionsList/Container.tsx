@@ -16,8 +16,8 @@ export const Container: React.FC<ContainerProps> = ({
   return (
     <Component
       empty={!loading && props.data.length === 0}
+      search={{type: 'Search', query}}
       {...props}
-      query={query}
     />
   );
 };

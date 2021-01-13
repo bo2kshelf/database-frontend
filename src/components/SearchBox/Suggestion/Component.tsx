@@ -20,6 +20,10 @@ export const Component: React.FC<ComponentProps> = ({...props}) => {
         return {
           type: t('common:series'),
         };
+      case 'Search':
+        return {
+          type: t('common:search'),
+        };
     }
   })();
 

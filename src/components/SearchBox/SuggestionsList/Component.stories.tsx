@@ -17,8 +17,8 @@ export const Primary: Story<ComponentProps> = (args) => (
   <Component {...args} className={clsx('w-72')} />
 );
 Primary.args = {
-  query: 'Query',
   empty: false,
+  search: {type: 'Search', query: '油絵ネス湖の怪物はあなたを信じる'},
   data: [
     {id: '1', type: 'Book', title: 'Book 1'},
     {id: '2', type: 'Book', title: 'Book 2'},
@@ -30,14 +30,17 @@ Primary.args = {
   ],
 };
 Primary.argTypes = {
-  query: {table: {disable: true}},
+  search: {table: {disable: true}},
 };
 
 export const NoResult: Story<ComponentProps> = (args) => (
   <Component {...args} className={clsx('w-72')} />
 );
 NoResult.args = {
-  query: '油絵ネス湖の怪物はあなたを信じる',
   empty: true,
   data: [],
+  search: {type: 'Search', query: '油絵ネス湖の怪物はあなたを信じる'},
+};
+NoResult.argTypes = {
+  search: {table: {disable: true}},
 };

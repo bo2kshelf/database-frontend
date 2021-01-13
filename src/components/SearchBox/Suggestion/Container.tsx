@@ -2,20 +2,29 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Component, ComponentProps} from './Component';
 
+export type AuthorType = {
+  type: 'Author';
+  id: string;
+  name: string;
+};
+export type BookType = {
+  type: 'Book';
+  id: string;
+  title: string;
+};
+export type SeriesType = {
+  type: 'Series';
+  id: string;
+  title: string;
+};
+export type SearchType = {
+  type: 'Search';
+  query: string;
+};
+
 export type ContainerProps = {
   className?: ComponentProps['className'];
-  data: {
-    id: string;
-  } & (
-    | {
-        type: 'Series' | 'Book';
-        title: string;
-      }
-    | {
-        type: 'Author';
-        name: string;
-      }
-  );
+  data: AuthorType | BookType | SeriesType | SearchType;
 };
 export const Container: React.FC<ContainerProps> = ({data, ...props}) => {
   const {t} = useTranslation();
@@ -45,6 +54,11 @@ export const Container: React.FC<ContainerProps> = ({data, ...props}) => {
           i18n: {
             type: t('common:series'),
           },
+        };
+      case 'Search':
+        return {
+          href: `/search?query=${data.query}`,
+          text: data.query,
         };
     }
   })();

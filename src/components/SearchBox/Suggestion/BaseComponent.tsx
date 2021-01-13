@@ -31,7 +31,13 @@ export const PlainBaseComponent: React.FC<BaseComponentProps> = ({
       <a className={clsx('px-4', 'py-3', 'flex', 'items-center')}>
         <SugesstionIcon className={clsx('mr-2')} type={type} />
         <span
-          className={clsx('mr-2', 'select-none', 'text-sm', 'text-gray-500')}
+          className={clsx(
+            'mr-2',
+            'select-none',
+            'text-sm',
+            'text-gray-500',
+            'whitespace-nowrap',
+          )}
         >
           {i18n.type}
         </span>

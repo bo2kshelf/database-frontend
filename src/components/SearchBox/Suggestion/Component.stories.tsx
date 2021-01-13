@@ -47,3 +47,15 @@ Author.args = {
 Author.argTypes = {
   type: {table: {disable: true}},
 };
+
+export const Search: Story<ComponentProps> = (args) => (
+  <Component {...args} className={clsx('w-72')} />
+);
+Search.args = {
+  type: 'Search',
+  text: 'example',
+  href: '/search?query=example',
+};
+Search.argTypes = {
+  type: {table: {disable: true}},
+};
