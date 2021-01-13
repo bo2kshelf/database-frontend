@@ -8,6 +8,9 @@ query SearchBooksPage($title: String!, $after: String) {
       endCursor
       hasNextPage
       hasPreviousPage
+      query {
+        title
+      }
     }
     edges {
       node {

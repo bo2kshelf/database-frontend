@@ -31,4 +31,10 @@ Primary.args = {
     authors: [{id: '1', name: 'Author 1', roles: null}],
     relatedSeries: [{id: '1', title: 'Series 1'}],
   })),
+  query: {
+    title: 'EXAMPLE',
+  },
+  aggregate: {
+    count: 9,
+  },
 };

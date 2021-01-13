@@ -1,18 +1,30 @@
 import clsx from 'clsx';
 import React from 'react';
 import {BookColumn, BookColumnProps} from './BookColumn';
+import {QueryDisplay, QueryDisplayProps} from './QueryDisplay';
 
 export type ComponentProps = {
   className?: string;
+  query: {
+    title: string;
+  };
+  aggregate: QueryDisplayProps['aggregate'];
   books: BookColumnProps['book'][];
 };
 export const Component: React.FC<ComponentProps> = ({
   className,
   children,
   books,
+  aggregate,
+  query,
 }) => (
   <main className={clsx(className)}>
     {children}
+    <QueryDisplay
+      query={query}
+      className={clsx('mb-6')}
+      aggregate={aggregate}
+    />
     <div
       className={clsx(
         'grid',

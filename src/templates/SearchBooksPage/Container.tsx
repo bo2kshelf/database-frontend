@@ -10,6 +10,8 @@ export const Container: React.FC<ContainerProps> = ({
   return (
     <Component
       {...props}
+      query={searchBooks.pageInfo.query}
+      aggregate={searchBooks.aggregate}
       books={searchBooks.edges.map(
         ({node: {authors, relatedSeries, cover, ...rest}}) => ({
           ...rest,
